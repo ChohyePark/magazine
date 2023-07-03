@@ -8,7 +8,7 @@ export default function ({user}) {
   const Navigate = useNavigate();
 
   const BtnHandler = () => {
-    Navigate("/mypage/infomod")
+    alert('기능 구현 중 데헷 >_<')
   }
 
   return (

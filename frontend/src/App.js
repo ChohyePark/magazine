@@ -1,8 +1,8 @@
 import 'remixicon/fonts/remixicon.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-import {useEffect, useState} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import BoardWritePage from './pages/BoardWritePage';
 import BoardViewPage from './pages/BoardViewPage';
 import BoardListPage from './pages/BoardListPage';
@@ -34,14 +34,14 @@ function App() {
 
   return (
     <div className="container-flud">
-      <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
-        <Route element={<Header user={user}/>}>
-          <Route path="/" element={<Index user={user} setUser={setUser}/>}/>
+        <Route element={<Header user={user} />}>
+          <Route path="/" element={<Index user={user} setUser={setUser} />} />
           <Route path="/posts"
-                 element={<BoardListPage posts={posts} setPosts={setPosts} user={user}></BoardListPage>}></Route>
-          <Route path='/newpost' element={<BoardWritePage setPosts={setPosts} user={user}></BoardWritePage>}/>
-          <Route path='/post/:id' element={<BoardViewPage user={user}></BoardViewPage>}/>
+            element={<BoardListPage posts={posts} setPosts={setPosts} user={user}></BoardListPage>}></Route>
+          <Route path='/newpost' element={<BoardWritePage setPosts={setPosts} user={user}></BoardWritePage>} />
+          <Route path='/post/:id' element={<BoardViewPage user={user}></BoardViewPage>} />
           <Route path='/modpost/:id' element={<BoardModPage
             setPosts={setPosts} posts={posts}></BoardModPage>}></Route>
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>

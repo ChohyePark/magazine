@@ -1,5 +1,6 @@
 import style from './Icon.module.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 
 function LogOutIcon() {
@@ -36,7 +37,7 @@ function LogOutIcon() {
 }
 
 
-function LoginIcon() {
+function LoginIcon({user}) {
   return (
     <>
       <div className={`${style.icon} d-none d-sm-block`}>
@@ -47,6 +48,17 @@ function LoginIcon() {
               <span className={style.icon_text}>Mypage</span>
             </li>
           </Link>
+          {
+            user.vendor === "google" ?
+            <Link to="https://accounts.google.com/Logout" onClick={() => {
+            localStorage.removeItem("isLoggedIn")
+            localStorage.removeItem("user")
+          }}>
+            <li className='mt-2'>
+              <i className="ri-user-4-line"></i>
+              <span className={style.icon_text}>Logout</span>
+            </li>
+          </Link> :
           <Link to="http://localhost:8080/logout" onClick={() => {
             localStorage.removeItem("isLoggedIn")
             localStorage.removeItem("user")
@@ -56,6 +68,8 @@ function LoginIcon() {
               <span className={style.icon_text}>Logout</span>
             </li>
           </Link>
+          }
+
         </ul>
       </div>
       <div className={`${style.search_icon} d-block d-sm-none`}>

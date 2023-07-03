@@ -22,7 +22,7 @@ export default function ({user}) {
           <Navi></Navi>
         </div>
         <div className="col-6 col-sm-none col-md-2" id="icon_area">
-          {user ? <LoginIcon></LoginIcon> : <LogOutIcon></LogOutIcon>}
+          {user ? <LoginIcon user = {user}></LoginIcon> : <LogOutIcon></LogOutIcon>}
         </div>
       </div>
     )

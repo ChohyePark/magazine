@@ -36,7 +36,7 @@ function Button({post, setPosts, user}) {
           data: post
         }
       ).then((resp) => {
-        resp.data = {...resp.data, email: user.email}
+        resp.data = {...resp.data, email: user.email, picture : user.picture}
         setPosts(prev => [...prev, resp.data])
         Navigate(`/post/${resp.data.id}`, {state: {from: resp.data}})
       })

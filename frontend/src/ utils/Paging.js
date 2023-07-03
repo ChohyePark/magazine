@@ -1,20 +1,21 @@
 import Pagination from 'react-js-pagination'
+import { useState } from 'react';
 import styled from 'styled-components'
 
 
-const Paging = ({page, limit, arr, handlePageChange}) => {
+const Paging = ({page,limit,post,handlePageChange}) => {
   return (
     <PaginationBox>
-      <Pagination
-        activePage={page} // 현재 페이지
-        itemsCountPerPage={limit} // 한 페이지당 보여줄 아이템 갯수
-        totalItemsCount={arr.length - 1} // 전체 아이템 수
-        pageRangeDisplayed={5} // 페이지 범위
-        prevPageText={"이전"} // "이전" 을 나타낼 텍스트
-        nextPageText={"다음"} // "다음" 을 나타낼 텍스트
-        onChange={handlePageChange} // 페이지 변경 핸들러
-        들링하는 함수/>
-    </PaginationBox>
+        <Pagination
+          activePage={page} // 현재 페이지
+          itemsCountPerPage={limit} // 한 페이지당 보여줄 아이템 갯수
+          totalItemsCount={post.length - 1} // 전체 아이템 수
+          pageRangeDisplayed={5} // 페이지 범위
+          prevPageText={"이전"} // "이전" 을 나타낼 텍스트
+          nextPageText={"다음"} // "다음" 을 나타낼 텍스트
+          onChange={handlePageChange} // 페이지 변경 핸들러
+          들링하는 함수 />
+      </PaginationBox>
   )
 }
 

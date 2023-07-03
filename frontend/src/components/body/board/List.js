@@ -1,19 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import style from './List.module.css';
-import { useState, useEffect } from "react";
+import { useState, useEffect,  useLayoutEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 
-export default function List({ posts, page, setPage, search }) {
+export default function List({ posts, search }) {
 
+  const [page, setPage] = useState(0);
   const [item, setItem] = useState([]);
   const pageEnd = useRef();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 
   const getItem = (page) => {
-
-
     if(search.category == 'ALL' && search.word == '') {
       setItem(posts.slice(0,page));
       return
@@ -25,24 +24,25 @@ export default function List({ posts, page, setPage, search }) {
     }
 
   useEffect(() => {
-    console.log(posts)
     getItem(page);
-    setLoading(true);
+    setLoading(prev => true);
   }, [page])
 
   useEffect(() => {
     getItem(page);
-    setLoading(true);
+    setLoading(prev => true);
   }, [search])
-
 
 
   const loadMore = () => {
     setPage(prev => prev + 3);
+    console.log(page);
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    console.log(123)
     if (loading) {
+      console.log(1234)
       const observer = new IntersectionObserver((entries, observer) => {
         loadMore();
       })
@@ -69,7 +69,9 @@ export default function List({ posts, page, setPage, search }) {
                     </div>
                     <div className={`${style.content_info} d-flex justify-content-start`} >
                       <div className={style.like_box}>
-                        좋아요 정보 박스 •
+                      <i className="ri-heart-fill me-1" style={{color:"#9B111E"
+                      , fontSize : "0.49rem"
+                    }}></i>{post.count} •
                       </div>
                       <div className={style.author_box}>
                         by {post.author} •
@@ -82,7 +84,7 @@ export default function List({ posts, page, setPage, search }) {
           </>
         )
       })}
-    <div ref={pageEnd} />
+      <div ref={pageEnd} />
     </div>
   )
 }

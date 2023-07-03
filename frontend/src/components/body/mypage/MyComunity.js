@@ -1,9 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import style from './MyComunity.module.css'
-import {useState} from 'react';
-import {Nav} from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Nav } from 'react-bootstrap';
 import Paging from '../../../ utils/Paging';
 import styled from 'styled-components'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 export default function () {
@@ -12,12 +14,12 @@ export default function () {
     <div className={style.container}>
       <div>
         <Nav variant="tabs" defaultActiveKey="link0">
-          <Nav.Item style={{width: "45%"}} className={style.nav}>
+          <Nav.Item style={{ width: "45%" }} className={style.nav}>
             <Nav.Link eventKey="link0" onClick={() => {
               setTab(0);
             }}><span className={style.navi_item}>작성글</span></Nav.Link>
           </Nav.Item>
-          <Nav.Item style={{width: "45%"}} className={style.nav}>
+          <Nav.Item style={{ width: "45%" }} className={style.nav}>
             <Nav.Link eventKey="link1" onClick={() => {
               setTab(1);
             }}><span className={style.navi_item}>작성 댓글 </span></Nav.Link>
@@ -30,32 +32,52 @@ export default function () {
 }
 
 const Post = () => {
+  const [post, setPost] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
+
+
+  const getPost = () => {
+    axios({
+      url: '/api/v1/my_page/posts',
+      method: 'get'
+    }).then((resp) => {
+      setPost(resp.data)
+    })
+  }
+
+
+  useEffect(() => {
+    getPost()
+  }, [])
 
   const handlePageChange = (page) => {
     setPage(page);
   };
-  const arr = ['1', '2', '3', '4', '5', '6', '7', '8,', '9', '10', '11', '12'];
+
 
   const offset = (page - 1) * limit;
 
   return (
-
     <div className={style.post_box}>
       <div className={style.title}><strong>제목</strong></div>
       {
-        arr.slice(
+        post.slice(
           offset,
           offset + limit
-        ).map((e, i) => {
+        ).map((post, i) => {
           return (
-            <div className={style.post_list}>{e}</div>
+            <Link to={`/post/${post.id}`} state={{ from: post }}>
+              <div className={style.post_list}><span style={{
+                color:
+                  "black"
+              }}>{post.title}</span></div>
+            </Link>
           )
         })
       }
       <div className={style.page_box}>
-        <Paging page={page} limit={limit} arr={arr} handlePageChange={handlePageChange}></Paging>
+        <Paging page={page} limit={limit} post={post} handlePageChange={handlePageChange}></Paging>
       </div>
     </div>
   )
@@ -116,29 +138,63 @@ const PaginationBox = styled.div`
 `
 
 const Reply = () => {
+  const [reply, setReply] = useState([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+
+  const getReply = () => {
+    axios({
+      url: '/api/v1/my_page/comments',
+      method: 'get'
+    }).then((resp) => {
+      console.log(resp.data)
+      setReply(resp.data)
+    })
+  }
+
+  useEffect(() => {
+    getReply()
+  }, [])
+
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+
+  const offset = (page - 1) * limit;
+
   return (
     <div className={style.reply_box}>
       <div className={style.title}><strong>댓글</strong></div>
-      <div className={style.reply}>
-        댓글입니다
-      </div>
-      <div className={style.reply}>
-        <p className={style.reply_p}>
-        </p>
-      </div>
-      <div className={style.reply}>
-        <p></p>
+      {
+        reply.slice(
+          offset,
+          offset + limit
+        ).map((reply, i) => {
+          return (
+            <Link to={`/post/${reply.postId}`} state={{
+              from: {
+                id: reply.postId
+              }
+              }}>
+              <div className={style.reply}>
+               <span className={style.reply_content}>{reply.contents}</span>
+              </div>
+            </Link>
+          )
+        })
+      }
+      <div className={style.page_box}>
+        <Paging page={page} limit={limit} post={reply} handlePageChange={handlePageChange}></Paging>
       </div>
     </div>
   )
 }
 
-
 function Tab(props) {
   return (
     <div>
       {[<Post></Post>,
-        <Reply></Reply>][props.tab]}
+      <Reply></Reply>][props.tab]}
     </div>
   )
 }

@@ -9,12 +9,22 @@ import ListButton from "../components/listButton/ListButton";
 
 export default function ({user}) {
   const location = useLocation();
+  const [post,setPost] = useState({});
   const [replys, setReplys] = useState([]);
   const [liked, setLiked] = useState({isLike: false, count: 0});
   const [replyLike, setReplyLike] = useState([]);
   const [bookMarked, setBookMarked] = useState({isSubscribed: false});
   const {from} = location.state;
 
+  const getPost = async () => {
+    axios({
+      url : `/api/v1/posts/${from.id}`,
+      method : 'get'
+    }).then((resp)=> {
+      setPost(resp.data)
+    })
+
+  }
 
   const getReply = async () => {
     let comments = null;
@@ -61,6 +71,7 @@ export default function ({user}) {
   }
 
   useEffect(() => {
+    getPost();
     getReply();
     getLike();
     getBookMark();
@@ -69,7 +80,7 @@ export default function ({user}) {
 
   return (
     <>
-      <ViewForm post={from} user={user}></ViewForm>
+      <ViewForm post={post} user={user}></ViewForm>
       <Reply
       replys={replys}
       setReplys={setReplys}

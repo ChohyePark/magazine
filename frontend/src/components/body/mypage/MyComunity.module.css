@@ -22,7 +22,7 @@
 }
 
 
-.title {
+.title{
   border-top: 3px solid black;
   border-bottom: 1px solid black;
   padding-top: 6px;
@@ -31,6 +31,7 @@
   height: 40px;
   text-align: center;
   margin-bottom: 12px;
+  overflow: hidden;
 }
 
 .post_list {
@@ -52,10 +53,21 @@
   padding-top: 5px;
   padding-left: 20px;
   width: 90%;
-  height: 36px;
+  height: 2.5rem;
+  overflow: hidden;
   border: 1px solid black;
   border-radius: 20px;
   margin-bottom: 10px;
+}
+
+.reply_content {
+  color: black;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical
 }
 
 .reply_p {

@@ -1,9 +1,12 @@
 import {useState} from 'react';
 import style from './UserOut.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
+import axios from 'axios';
+import { redirect, useNavigate } from 'react-router-dom';
 
 export default function () {
   const [check, setCheck] = useState(false);
+  const Navigate = useNavigate();
 
   const checkedHandler = (checked, id) => {
     if (checked) {
@@ -37,8 +40,7 @@ export default function () {
         <span className={style.span}>위 내용을 모두 확인했습니다 (필수)</span>
       </div>
       <div className='mt-3'>
-        <input type='text' placeholder='비밀번호를 입력해주세요' className={style.userout_input}></input>
-        <button className='btn btn-dark ms-4'
+        <button className='btn btn-dark mt-2'
                 style={{fontSize: "14px"}}
                 onClick={() => {
                   if (check == false) {
@@ -46,7 +48,15 @@ export default function () {
                     return;
                   }
                   if (window.confirm("정말 탈퇴하시겠습니까?")) {
-                    alert('회원 탈퇴가 완료되었습니다.')
+                    axios({
+                      url : '/api/v1/users',
+                      method : 'delete'
+                    }).then((resp)=> {
+                      localStorage.removeItem("isLoggedIn")
+                      localStorage.removeItem("user")
+                      window.location.href = "http://localhost:8080/logout";
+
+                    })
                   } else {
                     return;
                   }

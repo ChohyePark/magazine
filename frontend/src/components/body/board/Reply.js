@@ -106,7 +106,7 @@ const Reply = ({ replys,
       url: `/api/v1/comments/${post_id}`,
       data: reply
     }).then((resp) => {
-      resp.data = { ...resp.data, author: user.nickname, email : user.email }
+      resp.data = { ...resp.data, author: user.nickname, email : user.email , picture:user.picture}
       setReplys(prev => [...prev, resp.data])
       setReply(prev => ({ ...prev, contents: "" }));
     })
@@ -222,13 +222,12 @@ const Comment = ({ reply,
 
   }
 
-
   return (
     <div>
       <div className={style.replys}>
         <div className={style.profile_box}>
           <div className={style.profile}>
-            <img src={profile} style={{ width: "100%", height: "100%" }}></img>
+            <img src={reply.picture} style={{ width: "100%", height: "100%" }}></img>
           </div>
         </div>
         <div className={style.reply_content}>
@@ -258,8 +257,6 @@ const Comment = ({ reply,
           </div>
           : null
         }
-
-
 
           </div>
           {replyModView ? <ReplyMod setReplyModView={setReplyModView}
