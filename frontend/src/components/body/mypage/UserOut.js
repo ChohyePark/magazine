@@ -25,8 +25,7 @@ export default function () {
       <div className={style.guide_box}>
         <ul className={style.ul}>
           <li className={style.guide}><strong>탈퇴 시 유의사항</strong></li>
-          <li className={style.l}>탈퇴 후에도 회원님께서 등록한 게시물 및 댓글은 사이트에 그대로 남아있습니다. 탈퇴 후에는 회원정보가 삭제되어 본인 여부를 확인할 수 없으므로 게시글을
-            임의로 삭제해드릴 수 없습니다. 먼저 해당 게시물을 삭제하신 후 탈퇴를 신청하시기 바랍니다.
+          <li className={style.l}>탈퇴 후에 회원님께서 등록한 게시물 및 댓글들은 사이트에서 모두 삭제 처리 됩니다. 탈퇴하기 전에 본인이 작성한 게시물과 댓글들은 모두 따로 보관한 후에 탈퇴해 주시길 바랍니다.
           </li>
           <li className={style.l}>동일 아이디는 탈퇴 후 7일 간 재사용할 수 없습니다.</li>
           <li className={style.l}>탈퇴한 계정 및 이용 내역은 복구할 수 없으니 탈퇴 시 유의하시기 바랍니다.</li>

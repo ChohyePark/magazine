@@ -16,6 +16,6 @@
 
 .category:hover img {
   cursor: pointer;
-  transition-duration: 0.9s;
-  transform: scale(1.15);
+  transition-duration: 1s;
+  transform: scale(1.09);
 }
