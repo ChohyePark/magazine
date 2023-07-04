@@ -9,18 +9,18 @@ export default function () {
       <div>
         <span className={`${style.join_title} d-flex justify-content-center`}>회원가입</span>
         <hr></hr>
-        <Link to="/joinbyemail">
-          <p className={style.join_mail}>
+          <p className={style.join_mail} onClick={()=>{
+            alert('로그인가서 바로 소셜 로그인해주세요')
+          }}>
             <i className={`${style.mail_icon} ri-mail-send-line`}></i>
             이메일 인증으로 가입
           </p>
-        </Link>
-        <Link to="/joinbyphone">
-          <p className={style.join_phone}>
+          <p className={style.join_phone} onClick={()=>{
+            alert('영차 영차 기능 구현중')
+          }}>
             <i className={`${style.phone_icon} ri-smartphone-line`}></i>
             핸드폰 인증으로 가입
           </p>
-        </Link>
       </div>
     </div>
   )

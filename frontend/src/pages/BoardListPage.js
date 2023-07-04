@@ -9,8 +9,9 @@ import axios from "axios";
 
 export default function ({posts, setPosts, user}) {
 
-
+  const [page, setPage] = useState(0);
   const [search, setSearch] = useState({});
+  const [loading, setLoading] = useState(false);
 
   let new_posts = null;
 
@@ -20,10 +21,8 @@ export default function ({posts, setPosts, user}) {
         method: 'get',
         url: '/api/v1/posts'
       }).then(resp => {
-        // setPosts(resp.data);
         new_posts = resp.data
         setSearch({category: "ALL", word: ""})
-        // setPage(10);
       });
     } catch (err) {
       alert('로그인 후 이용 가능합니다.')
@@ -36,12 +35,13 @@ export default function ({posts, setPosts, user}) {
       url : '/api/v1/likes/posts',
       method : 'get'
     }).then((resp) => {
-      new_posts.map((post, i) => {
+      new_posts.toReversed().map((post, i) => {
         post.count = resp.data[i].count;
         post.isLike = resp.data[i].isLike;
       })
       setPosts(new_posts);
-      console.log(new_posts)
+      setLoading(true);
+      setPage(5);
     })
   }
 
@@ -68,7 +68,7 @@ export default function ({posts, setPosts, user}) {
         <div className="d-none d-md-block">
           <BannerSearch search={search} setSearch={setSearch}></BannerSearch>
         </div>
-        <List posts={posts} search={search}></List>
+        <List posts={posts} search={search} loading = {loading} setLoading = {setLoading} page={page} setPage={setPage}></List>
         {user ? <PostButton></PostButton> : null}
       </div>
     </>

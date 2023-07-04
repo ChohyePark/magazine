@@ -1,16 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import style from './List.module.css';
-import { useState, useEffect,  useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 
-export default function List({ posts, search }) {
+export default function List({ posts, search, loading , setLoading , page ,setPage }) {
 
-  const [page, setPage] = useState(0);
   const [item, setItem] = useState([]);
   const pageEnd = useRef();
-  const [loading, setLoading] = useState(true);
-
 
   const getItem = (page) => {
     if(search.category == 'ALL' && search.word == '') {
@@ -39,11 +36,9 @@ export default function List({ posts, search }) {
     console.log(page);
   }
 
-  useLayoutEffect(() => {
-    console.log(123)
+  useEffect(() => {
     if (loading) {
-      console.log(1234)
-      const observer = new IntersectionObserver((entries, observer) => {
+      const observer = new IntersectionObserver((entries, options) => {
         loadMore();
       })
       observer.observe(pageEnd.current);
@@ -51,7 +46,9 @@ export default function List({ posts, search }) {
   }, [loading])
 
   return (
-    <div className={`${style.container}`}>
+    <>
+    {console.log(item)}
+      <div className={`${style.container}`}>
       {item.map((post, i) => {
         return (
           <>
@@ -84,7 +81,9 @@ export default function List({ posts, search }) {
           </>
         )
       })}
-      <div ref={pageEnd} />
+    <div ref={pageEnd} />
     </div>
+    </>
+
   )
 }

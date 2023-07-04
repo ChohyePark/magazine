@@ -1,14 +1,43 @@
 import style from './Footer.module.css';
 import logo from '../../assets/images/footer_logo.png'
+import { Link } from 'react-router-dom';
 
 function Footer({user}) {
 
   const MemberFooter = () => {
-
+      return (
+        <div className={`${style.footer_min} container-flud fixed-bottom d-md-none`}>
+        <div className="row">
+          <div className="col-4">
+            <Link to = "/"><span style={{color : "#fff"}}>메인</span></Link>
+            </div>
+          <div className="col-4">
+            <Link to = "mypage/info"><span style={{color : "#fff"}}>Mypage</span></Link>
+            </div>
+          <div className="col-4">
+            <Link to = "/posts"><span style={{color : "#fff"}}>Contents</span></Link>
+            </div>
+        </div>
+      </div>
+      )
   }
 
   const GuestFooter = () => {
-    
+    return (
+      <div className={`${style.footer_min} container-flud fixed-bottom d-md-none`}>
+      <div className="row">
+        <div className="col-4">
+          <Link to = "/"><span style={{color : "#fff"}}>메인</span></Link>
+          </div>
+        <div className="col-4">
+          <Link to = "/login"><span style={{color : "#fff"}}>로그인</span></Link>
+          </div>
+        <div className="col-4">
+          <Link to = "/posts"><span style={{color : "#fff"}}>Contents</span></Link>
+          </div>
+      </div>
+    </div>
+    )
   }
 
 
@@ -39,15 +68,8 @@ function Footer({user}) {
           </div>
         </div>
       </div>
-      <div className={`${style.footer_min} container-flud fixed-bottom d-md-none`}>
-        <div className="row">
-          <div className="col-4">메인</div>
-          <div className="col-4">Mypage</div>
-          <div className="col-4">글 작성</div>
-        </div>
-      </div>
+ {user ? <MemberFooter></MemberFooter>  : <GuestFooter></GuestFooter>}
     </>
-
   )
 }
 

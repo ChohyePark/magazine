@@ -80,6 +80,7 @@ export default function ({user}) {
 
   return (
     <>
+    {console.log(post)}
       <ViewForm post={post} user={user}></ViewForm>
       <Reply
       replys={replys}

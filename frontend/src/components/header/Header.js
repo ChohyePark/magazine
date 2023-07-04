@@ -31,7 +31,7 @@ export default function ({user}) {
     <>
       <Header></Header>
       <Outlet></Outlet>
-      <Footer></Footer>
+      <Footer user = {user}></Footer>
     </>
   )
 }
