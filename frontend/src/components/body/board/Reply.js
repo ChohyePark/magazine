@@ -260,7 +260,8 @@ const Comment = ({ reply,
 
           </div>
           {replyModView ? <ReplyMod setReplyModView={setReplyModView}
-            replys={replys} reply={reply} setReplys={setReplys}></ReplyMod> :
+            replys={replys} reply={reply} setReplys={setReplys}
+            user = {user}></ReplyMod> :
             <div className={style.content_b}>
               {reply.contents}
             </div>
@@ -272,7 +273,7 @@ const Comment = ({ reply,
 }
 
 
-const ReplyMod = ({ setReplyModView, setReplys, reply, replys }) => {
+const ReplyMod = ({ setReplyModView, setReplys, reply, replys, user }) => {
   const [modReply, setModReply] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -292,7 +293,7 @@ const ReplyMod = ({ setReplyModView, setReplys, reply, replys }) => {
       }).then((resp) => {
         let copy = [...replys];
         let findIndex = replys.findIndex(e => e.id == reply.id);
-        let sendModReply = ({ id: reply.id, contents: resp.data.contents });
+        let sendModReply = ({ id: reply.id, contents: resp.data.contents , picture : user.picture , author : user.nickname , email : user.email , count : reply.count, isLike : reply.isLike});
         copy[findIndex] = sendModReply;
         setReplys(copy);
         setReplyModView(false);
