@@ -227,7 +227,7 @@ const Comment = ({ reply,
       <div className={style.replys}>
         <div className={style.profile_box}>
           <div className={style.profile}>
-            <img src={reply.picture} style={{ width: "100%", height: "100%" }}></img>
+            <img src={reply.picture ? reply.picture : profile} style={{ width: "100%", height: "100%" }}></img>
           </div>
         </div>
         <div className={style.reply_content}>
