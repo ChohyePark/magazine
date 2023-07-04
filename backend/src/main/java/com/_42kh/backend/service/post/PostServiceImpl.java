@@ -39,10 +39,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    @Transactional()
+    @Transactional(readOnly = true)
     public PostResponse findById(Long postId) {
         Post post = postRepository.findById(postId).orElseThrow();
-        post.incrementViewCount();
 
         return new PostResponse(post);
     }
@@ -71,6 +70,7 @@ public class PostServiceImpl implements PostService {
             .setTitle(postRequest.getTitle())
             .setContents(postRequest.getContents())
             .setCategory(postRequest.getCategory());
+
         postRepository.save(post);
         return new PostUpdateResponse(post);
     }
