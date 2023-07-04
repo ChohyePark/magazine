@@ -26,6 +26,9 @@ public class Post extends BaseTime {
     @Column(nullable = false)
     private String title;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private Long viewCount;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
 
@@ -47,11 +50,13 @@ public class Post extends BaseTime {
     public Post(
         String title,
         String contents,
-        Category category
+        Category category,
+        Long viewCount
     ) {
         this.title = title;
         this.contents = contents;
         this.category = category;
+        this.viewCount = viewCount;
     }
 
     public Post setTitle(String title) {
@@ -78,6 +83,10 @@ public class Post extends BaseTime {
         if (!this.user.getId().equals(user.getId())) {
             throw new NoSuchElementException();
         }
+        return this;
+    }
+    public Post incrementViewCount(){
+        viewCount++;
         return this;
     }
 }
