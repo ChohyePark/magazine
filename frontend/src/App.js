@@ -20,6 +20,7 @@ import BoardModPage from './pages/BoardModPage';
 import ScrollToTop from './ScrollToTop';
 import BookMark from './components/body/mypage/BookMark';
 import Header from './components/header/Header';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -57,6 +58,7 @@ function App() {
         </Route>
         {/* 헤더 적용 페이지 끝  */}
         <Route path="/search" element={<Search></Search>}></Route>
+        <Route path="/*" element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </div>
   );
