@@ -31,7 +31,19 @@
 .footer_min {
   background-color: black;
   height: 4.3rem;
-  line-height: 4.3em;
   color: #fff;
   text-align: center;
+  padding-top: 0.4rem;
+}
+
+
+.footer_icon {
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.footer_text {
+  font-size: 1px;
+  color: #fff;
+  display: block;
 }
