@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Children } from "react";
 
 const Layout = styled.div`
-  margin-bottom: 20px;
+  margin: 20px;
 `;
 
 const Title = styled.div`

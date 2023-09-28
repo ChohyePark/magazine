@@ -165,7 +165,7 @@ export default function ({ user }) {
   };
 
   const onClickModPostHandler = () => {
-    Navigate("/modpost/" + post.id, { state: post });
+    Navigate("/updatepost/" + post.id, { state: post });
   };
 
   const onClickBookMarkHandler = async () => {

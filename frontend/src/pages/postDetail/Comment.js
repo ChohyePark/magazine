@@ -98,6 +98,7 @@ const Profile = styled.div`
 `;
 
 const CommentContent = styled.div`
+  font-size: 14px;
   border-top: 1px solid #d4d4d4;
   word-break: break-all;
 `;
