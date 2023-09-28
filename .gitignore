@@ -4,6 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+.gitignore
 
 ### STS ###
 .apt_generated
@@ -39,3 +40,15 @@ out/
 ### Misc ###
 .DS_Store
 Thumbs.db
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
