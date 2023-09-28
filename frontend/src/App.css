@@ -1,5 +1,6 @@
 
 a {
+
   text-decoration: none;
   margin: auto;
   padding: auto;
@@ -17,6 +18,9 @@ input {
 .end {
   opacity: 1;
   transition: opacity 2s;
+  justify-content: center;
+  align-items: center;
+
 }
 
 a {
