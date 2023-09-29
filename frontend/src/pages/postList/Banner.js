@@ -6,13 +6,22 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // 스타일 영역
+
 const BannerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 420px;
   background-color: none;
   border-bottom: 1px solid black;
   text-align: center;
   background-color: #fff;
+`;
+
+const BannerLayout = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const BannerItem = styled.div`
@@ -26,24 +35,21 @@ const BannerItem = styled.div`
 `;
 
 const BannerText = styled.div`
-  position: absolute;
-  z-index: 30;
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  top: ${(props) => props.top};
-  left: ${(props) => props.left};
-  font-size : ${(props) => (props.fontSize ? props.fontSize : "16px")}
-  };
+  position : relative;
+  top: ${(props) => props.$top};
+  right: ${(props) => props.$right};
+  width: ${(props) => props.$width};
+  height: ${(props) => props.$height};
+  font-size : ${(props) => (props.$fontSize ? props.$fontSize : "16px")};
+};
 `;
 
 const Button = styled.div`
-  width: auto;
-  height: auto;
-  position: absolute;
-  z-index: 100;
-  top: 17rem;
-  left: 1140px;
-
+  position: relative;
+  top: 160px;
+  left: 120px;
+  width: 200px;
+  height: 200px;
   button {
     border-radius: 40px;
     border: 1px solid black;
@@ -158,54 +164,54 @@ export default function ({ user, search, setSearch }) {
 
   return (
     <>
-      <BannerWrapper className="d-flex justify-content-center">
-        <BannerItem data-aos="flip-up" data-aos-delay="600" data-aos-duration="3000">
-          <img src={banner}></img>
-        </BannerItem>
-        <BannerText
-          width={"auto"}
-          height={"60px"}
-          top={"180px"}
-          left={"150px"}
-          fontSize={"42px"}
-          className="d-none d-md-block"
-          data-aos="fade-right"
-          data-aos-delay="100"
-          data-aos-duration="700"
-        >
-          <span>현재 당신의 관심사를</span>
-        </BannerText>
-        <BannerText
-          width={"500px"}
-          height={"60px"}
-          top={"370px"}
-          left={"955px"}
-          fontSize={"42px"}
-          className="d-none d-md-block"
-          data-aos="fade-up-left"
-          data-aos-delay="500"
-          data-aos-duration="700"
-        >
-          자유롭게 공유해주세요
-        </BannerText>
-        <BannerText
-          width={"auto"}
-          height={"auto"}
-          top={"200px"}
-          left={"1030px"}
-          className="d-none d-md-block"
-          data-aos="fade-up"
-          data-aos-delay="1000"
-          data-aos-duration="900"
-        >
-          <strong>방구석 매거진</strong>에서는 누구나 작가가 될 수 있고 <br />
-          <span> 무엇이든 컨텐츠가 될 수 있습니다.</span>
-        </BannerText>
-        <Button data-aos="zoom-in" data-aos-delay="1600" data-aos-duration="900">
-          <button className="d-none d-md-block" onClick={onClickWriteHandle}>
-            글쓰러 가기
-          </button>
-        </Button>
+      <BannerWrapper>
+        <BannerLayout>
+          <BannerText
+            $width={"500px"}
+            $height={"60px"}
+            $top={"120px"}
+            $fontSize={"42px"}
+            className="d-none d-md-block"
+            data-aos="fade-right"
+            data-aos-delay="100"
+            data-aos-duration="700"
+          >
+            <span>현재 당신의 관심사를</span>
+          </BannerText>
+        </BannerLayout>
+        <BannerLayout>
+          <BannerItem data-aos="flip-up" data-aos-delay="600" data-aos-duration="3000">
+            <img src={banner}></img>
+          </BannerItem>
+        </BannerLayout>
+        <BannerLayout className="d-none d-md-block">
+          <BannerText
+            $top={"150px"}
+            $width={"450px"}
+            $height={"50px"}
+            data-aos="fade-up"
+            data-aos-delay="1000"
+            data-aos-duration="900"
+          >
+            <strong>방구석 매거진</strong>에서는 누구나 작가가 될 수 있고 <br />
+            <span> 무엇이든 컨텐츠가 될 수 있습니다.</span>
+          </BannerText>
+          <Button data-aos="zoom-in" data-aos-delay="1600" data-aos-duration="900">
+            <button onClick={onClickWriteHandle}>글쓰러 가기</button>
+          </Button>
+          <BannerText
+            $width={"450px"}
+            $height={"60px"}
+            $top={"50px"}
+            $fontSize={"42px"}
+            className="d-none d-md-block"
+            data-aos="fade-up-left"
+            data-aos-delay="500"
+            data-aos-duration="700"
+          >
+            자유롭게 공유해주세요
+          </BannerText>
+        </BannerLayout>
       </BannerWrapper>
       <SearchWrapper
         className="d-none d-md-block d-flex justify-content-center"
@@ -221,7 +227,7 @@ export default function ({ user, search, setSearch }) {
                 setKeyword((prev) => ({ ...prev, category: e.target.value }));
               }}
             >
-              <option key={"전체"} value={"ALL"} selected>
+              <option key={"전체"} value={"ALL"}>
                 전체
               </option>
               <option key={"라이프"} value={"FREEDOM"}>

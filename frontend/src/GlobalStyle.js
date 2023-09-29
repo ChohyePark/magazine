@@ -2,7 +2,11 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
-ol, ul {
+* {
+  font-family: 'S-CoreDream-3Light';
+}
+
+ul {
 	list-style: none;
 }
 blockquote, q {

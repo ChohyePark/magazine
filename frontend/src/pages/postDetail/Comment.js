@@ -9,18 +9,21 @@ import { useState } from "react";
 
 const Comments = styled.div`
   width: 800px;
-  margin: ${(props) => props.margin};
-  padding-bottom: ${(props) => (props.padding ? props.padding : "")};
+  margin: ${(props) => props.$margin};
+  padding-bottom: ${(props) => (props.$padding ? props.$padding : "")};
 `;
 
 const CommentBox = styled.div`
+  margin-left: 10px;
+  height: 80px;
+  font-size: 13px;
   display: flex;
+  align-items: center;
+  flex: 2;
 `;
 
-const CommentLayOut = styled.div`
-  float: left;
-  flex: ${(props) => props.flex};
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "16px")};
+const CommentBoxItem = styled.div`
+  flex: ${(props) => props.$flex};
 `;
 
 const CommetInput = styled.textarea`
@@ -61,7 +64,8 @@ const ButtonBox = styled.div`
   font-size: 12px;
 `;
 
-const CommentListLayOut = styled.div`
+const CommentListLayout = styled.div`
+  margin-bottom: 50px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -69,19 +73,27 @@ const CommentListLayOut = styled.div`
   align-items: center;
 `;
 
+// 수정중~~~~~~~~~~~~~~
+
 const CommentList = styled.div`
   margin-top: 10px;
   width: 800px;
   height: auto;
   border: 1px solid #d4d4d4;
   display: flex;
+  flex-direction: column;
   background-color: #f9f8f3;
 `;
 
+const Test = styled.div`
+  width: 100%;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+`;
+
 const ProfileBox = styled.div`
-  float: left;
-  flex: 0.2;
-  margin: 5px 7px 5px 0;
+  padding: 5px 5px 10px 5px;
 `;
 
 const Profile = styled.div`
@@ -98,7 +110,9 @@ const Profile = styled.div`
 `;
 
 const CommentContent = styled.div`
-  font-size: 14px;
+  width: 100%;
+  padding: 10px 30px 10px 30px;
+  font-size: 16px;
   border-top: 1px solid #d4d4d4;
   word-break: break-all;
 `;
@@ -172,14 +186,14 @@ const Comment = ({ user, reply, setReplys, replys }) => {
   return (
     <>
       <CommentList>
-        <ProfileBox>
-          <Profile>
-            <img src={reply.picture ? reply.picture : profile}></img>
-          </Profile>
-        </ProfileBox>
-        <CommentLayOut flex={"2"}>
+        <Test>
+          <ProfileBox>
+            <Profile>
+              <img src={reply.picture ? reply.picture : profile}></img>
+            </Profile>
+          </ProfileBox>
           <CommentBox>
-            <CommentLayOut flex={"1"} fontSize={"12px"}>
+            <CommentBoxItem $flex={"2"}>
               <span>{reply.author}</span>
               <CommentLike
                 onClick={(e) => {
@@ -189,54 +203,56 @@ const Comment = ({ user, reply, setReplys, replys }) => {
                 <i style={{ color: reply.isLike ? "#9B111E" : "gray" }} className="ri-chat-heart-line me-1" />
                 {reply.count}
               </CommentLike>
-            </CommentLayOut>
-            {user && user.email == reply.email ? (
-              <CommentUpdateButton>
-                <ul>
-                  <li
-                    onClick={() => {
-                      setCommentUpdateView(!commentUpdateView);
-                    }}
-                  >
-                    수정
-                  </li>
-                  <li onClick={onClickDeleteCommentHandler}>삭제</li>
-                </ul>
-              </CommentUpdateButton>
-            ) : null}
+            </CommentBoxItem>
+            <CommentBoxItem $flex={"0.4"}>
+              {user && user.email == reply.email ? (
+                <CommentUpdateButton>
+                  <ul>
+                    <li
+                      onClick={() => {
+                        setCommentUpdateView(!commentUpdateView);
+                      }}
+                    >
+                      수정
+                    </li>
+                    <li onClick={onClickDeleteCommentHandler}>삭제</li>
+                  </ul>
+                </CommentUpdateButton>
+              ) : null}
+            </CommentBoxItem>
           </CommentBox>
-          {commentUpdateView ? (
-            <CommentUpdateForm>
-              <CommentUpdateTitle>
-                <strong>댓글수정</strong>
-              </CommentUpdateTitle>
-              <div>
-                <CommentUpdateInput name="contents" onChange={handleChange} />
-              </div>
-              <Button width={"65px"} hegiht={"20px"} clickEvent={onClickPutCommentHandler}>
-                수정
-              </Button>
-              <Button
-                width={"70px"}
-                hegiht={"20px"}
-                onClick={() => {
-                  setCommentUpdateView(false);
-                }}
-              >
-                수정 취소
-              </Button>
-            </CommentUpdateForm>
-          ) : (
-            <CommentContent>{reply.contents}</CommentContent>
-          )}
-        </CommentLayOut>
+        </Test>
+        {commentUpdateView ? (
+          <CommentUpdateForm>
+            <CommentUpdateTitle>
+              <strong>댓글수정</strong>
+            </CommentUpdateTitle>
+            <div>
+              <CommentUpdateInput name="contents" onChange={handleChange} />
+            </div>
+            <Button width={"65px"} hegiht={"20px"} clickEvent={onClickPutCommentHandler}>
+              수정
+            </Button>
+            <Button
+              width={"70px"}
+              hegiht={"20px"}
+              onClick={() => {
+                setCommentUpdateView(false);
+              }}
+            >
+              수정 취소
+            </Button>
+          </CommentUpdateForm>
+        ) : (
+          <CommentContent>{reply.contents}</CommentContent>
+        )}
       </CommentList>
     </>
   );
 };
 
 export default function ({ id, user, setReplys, replys }) {
-  const [reply, handleChange, submit] = useInput({ contents: "" });
+  const [reply, handleChange, submitEvent] = useInput({ contents: "" });
 
   const onClickPostComment = async () => {
     if (reply.contents === "") {
@@ -250,21 +266,21 @@ export default function ({ id, user, setReplys, replys }) {
     }).then((resp) => {
       resp.data = { ...resp.data, author: user.nickname, email: user.email, picture: user.picture };
       setReplys((prev) => [...prev, resp.data]);
-      submit("contents");
+      submitEvent("contents");
     });
   };
 
   return (
     <>
-      <CommentListLayOut>
+      <CommentListLayout>
         {replys != null
           ? replys.map((reply, i) => {
               return <Comment user={user} reply={reply} setReplys={setReplys} replys={replys} />;
             })
           : null}
-      </CommentListLayOut>
+      </CommentListLayout>
       {user ? (
-        <Comments margin={"10px auto"} padding={"2rem"}>
+        <Comments $margin={"10px auto"} $padding={"2rem"}>
           <div>
             <strong>댓글</strong>
           </div>

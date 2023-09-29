@@ -19,10 +19,8 @@ const Title = styled.div`
 
 export default function ({ children }) {
   return (
-    <>
-      <Layout>
-        <Title>{children}</Title>
-      </Layout>
-    </>
+    <Layout>
+      <Title>{children}</Title>
+    </Layout>
   );
 }

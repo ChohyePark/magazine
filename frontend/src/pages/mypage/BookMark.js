@@ -6,7 +6,7 @@ import axios from "axios";
 const BookMark = styled.div`
   margin-top: 30px;
   width: 70%;
-  height: 500px;
+  height: 600px;
   padding-left: 20px;
 `;
 

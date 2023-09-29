@@ -8,9 +8,9 @@ export default function (initialValue) {
     setInputValue((prev) => ({ ...prev, [name]: value }));
   };
 
-  const submit = (inputname) => {
+  const submitEvent = (inputname) => {
     setInputValue({ [inputname]: "" });
   };
 
-  return [inputValue, handleChange, submit];
+  return [inputValue, handleChange, submitEvent];
 }
