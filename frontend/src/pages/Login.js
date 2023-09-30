@@ -88,9 +88,6 @@ const SocialIcon = styled.div`
 `;
 
 export default function () {
-  const Navigate = useNavigate();
-  const [loginUser, setLoginUser] = useState({ id: "", password: "" });
-
   return (
     <Container height={"640px"}>
       <LoginBox>

@@ -5,6 +5,7 @@ import PostButton from "../../components/post/PostCreateButton";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // 스타일 영역
 
@@ -91,7 +92,10 @@ const ContentInfo = styled.div`
   margin-top: 20px;
 `;
 
-export default function ({ user }) {
+export default function () {
+  const user = useSelector((state) => {
+    return state.user;
+  });
   const [posts, setPosts] = useState([]);
   const [pagingPost, setPagingPost] = useState([]);
   const [page, setPage] = useState(0);
@@ -183,7 +187,7 @@ export default function ({ user }) {
         })}
         <div ref={pageEnd} />
       </ContentWrapper>
-      {user ? <PostButton /> : null}
+      {user.isLogin ? <PostButton /> : null}
     </>
   );
 }

@@ -18,6 +18,8 @@ import sports from "../assets/category/sports.png";
 import it from "../assets/category/it.png";
 import fashoin from "../assets/category/fashoin.png";
 import PostButton from "../components/post/PostCreateButton";
+import { saveUser } from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
 
 // 스타일 컴포넌트
 const BannerWrapper = styled.div`
@@ -107,8 +109,12 @@ const ItemBox = styled.div`
   margin: auto;
 `;
 
-export default function ({ user, setUser }) {
+export default function () {
   let [searchParams, setSearchParams] = useSearchParams();
+  let dispatch = useDispatch();
+  const user = useSelector((state) => {
+    return state.user;
+  });
   const success = searchParams.get("success");
 
   useEffect(() => {
@@ -120,7 +126,8 @@ export default function ({ user, setUser }) {
       url: "/api/v1/users",
       method: "get",
     }).then((resp) => {
-      setUser(resp.data);
+      dispatch(saveUser(resp.data));
+      console.log(resp.data);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify(resp.data));
     });
@@ -283,7 +290,7 @@ export default function ({ user, setUser }) {
           <img src={fashoin} />
         </CategoryItem>
       </CategoryWrapper>
-      {user ? <PostButton></PostButton> : null}
+      {user.isLogin ? <PostButton></PostButton> : null}
     </Container>
   );
 }

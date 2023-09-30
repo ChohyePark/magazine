@@ -2,8 +2,7 @@ import styled from "styled-components";
 import Form from "../../components/mypage/Form";
 import profile from "../../assets/logo/mypage_profile.png";
 import { useEffect, useState } from "react";
-
-// 스타일 영역
+import { useSelector } from "react-redux";
 
 const Profile = styled.div`
   margin-left: 10px;
@@ -49,12 +48,15 @@ const UserInfo = styled.div`
   width: 20rem;
 `;
 
-export default function ({ user, setUser }) {
+export default function () {
+  const user = useSelector((state) => {
+    return state.user;
+  });
   const [picture, setPicture] = useState("");
   const [createdDate, setCreatedDate] = useState();
 
   const getPicture = () => {
-    if (user.picture !== null) {
+    if (user.picture !== "") {
       setPicture(user.picture);
     } else {
       setPicture({ profile });

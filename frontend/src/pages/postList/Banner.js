@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Aos from "aos";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 // 스타일 영역
 
@@ -130,7 +131,10 @@ const IconWrapper = styled.div`
   }
 `;
 
-export default function ({ user, search, setSearch }) {
+export default function ({ setSearch }) {
+  const user = useSelector((state) => {
+    return state.user;
+  });
   const [keyWord, setKeyword] = useState({ word: "", category: "ALL" });
   const Navigate = useNavigate();
 
@@ -154,7 +158,7 @@ export default function ({ user, search, setSearch }) {
   }, []);
 
   const onClickWriteHandle = (e) => {
-    if (!user) {
+    if (!user.isLogin) {
       alert("로그인한 회원만 이용할 수 있습니다");
       e.preventDefault();
       return;

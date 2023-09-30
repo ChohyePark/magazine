@@ -56,8 +56,6 @@ const Post = styled.div`
   }
 `;
 
-const BookMarkedTitle = styled.div``;
-
 export default function () {
   const [bookMarks, setBookMarks] = useState([]);
   const getBookMark = () => {

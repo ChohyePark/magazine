@@ -9,7 +9,6 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-
 const Button = styled.div`
   width: 6rem;
   height: 6rem;

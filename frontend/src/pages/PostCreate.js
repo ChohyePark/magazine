@@ -7,8 +7,12 @@ import Container from "../components/shared/Container";
 import Editor from "../components/post/Editor";
 import Title from "../components/post/Title";
 import Button from "../components/shared/Button";
+import { useSelector } from "react-redux";
 
-export default function ({ user }) {
+export default function () {
+  const user = useSelector((state) => {
+    return state.user;
+  });
   const Navigate = useNavigate();
   const [post, setPost] = useState({ title: "", contents: "", category: "" });
 

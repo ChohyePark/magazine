@@ -9,6 +9,8 @@ import UserOut from "./pages/mypage/UserOut";
 import MyComunity from "./pages/mypage/MyComunity";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { saveUser } from "./store/store";
+import { useDispatch } from "react-redux";
 import Index from "./pages/Index";
 import PostCreate from "./pages/PostCreate";
 import PostDetail from "./pages/postDetail/PostDetail";
@@ -22,12 +24,12 @@ import Layout from "./components/layout/Layout";
 import Error from "./pages/Error";
 
 function App() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("isLoggedIn");
     if (loggedInStatus === "true") {
-      setUser(JSON.parse(localStorage.getItem("user")));
+      dispatch(saveUser(JSON.parse(localStorage.getItem("user"))));
     }
   }, []);
 
@@ -36,17 +38,17 @@ function App() {
       <GlobalStyle />
       <ScrollToTop />
       <Routes>
-        <Route element={<Layout user={user} />}>
-          <Route path="/" element={<Index user={user} setUser={setUser} />} />
-          <Route path="/posts" element={<PostList user={user} />} />
-          <Route path="/newpost" element={<PostCreate user={user} />} />
-          <Route path="/post/:id" element={<PostDetail user={user}></PostDetail>} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Index />} />
+          <Route path="/posts" element={<PostList />} />
+          <Route path="/newpost" element={<PostCreate />} />
+          <Route path="/post/:id" element={<PostDetail></PostDetail>} />
           <Route path="/updatepost/:id" element={<PostUpdate />} />
           <Route path="/login" element={<Login></Login>} />
           <Route path="/join" element={<Join></Join>} />
           <Route path="/mypage" element={<MyPage></MyPage>}>
-            <Route path="info" element={<UserInfo user={user} setUser={setUser}></UserInfo>} />
-            <Route path="reconfirm" element={<UserPasswordCheck user={user}></UserPasswordCheck>} />
+            <Route path="info" element={<UserInfo></UserInfo>} />
+            <Route path="reconfirm" element={<UserPasswordCheck></UserPasswordCheck>} />
             <Route path="bookmark" element={<BookMark />} />
             <Route path="userout" element={<UserOut></UserOut>} />
             <Route path="mycommunity" element={<MyComunity></MyComunity>} />

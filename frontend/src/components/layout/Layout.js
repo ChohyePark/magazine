@@ -2,12 +2,12 @@ import { Outlet } from "react-router-dom";
 import Header from "./header/Header";
 import Footer from "./Footer";
 
-export default function ({ user }) {
+export default function () {
   return (
     <>
-      <Header user={user}></Header>
+      <Header></Header>
       <Outlet></Outlet>
-      <Footer user={user}></Footer>
+      <Footer></Footer>
     </>
   );
 }

@@ -2,6 +2,7 @@ import Form from "../../components/mypage/Form";
 import styled from "styled-components";
 import Title from "../../components/mypage/Title";
 import Button from "../../components/shared/Button";
+import { useSelector } from "react-redux";
 
 const TextFont = styled.h3`
   font-family: "S-CoreDream-6Bold";
@@ -45,7 +46,10 @@ const ButtonBox = styled.div`
   margin-top: 16px;
 `;
 
-export default function ({ user }) {
+export default function () {
+  const user = useSelector((state) => {
+    return state.user;
+  });
   return (
     <Form>
       <Title>

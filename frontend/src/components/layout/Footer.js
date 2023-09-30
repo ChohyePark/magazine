@@ -1,5 +1,6 @@
 import logo from "../../assets/logo/footer_logo.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const FooterMdWrapper = styled.div`
@@ -48,7 +49,11 @@ const FooterText = styled.span`
   display: block;
 `;
 
-function Footer({ user }) {
+function Footer() {
+  const user = useSelector((state) => {
+    return state.user;
+  });
+
   const UserFooter = () => {
     return (
       <FooterSmallWrapper className="fixed-bottom d-md-none">
@@ -135,7 +140,7 @@ function Footer({ user }) {
           </FooterContent>
         </FooterRow>
       </FooterMdWrapper>
-      {user ? <UserFooter></UserFooter> : <GuestFooter></GuestFooter>}
+      {user.isLogin ? <UserFooter></UserFooter> : <GuestFooter></GuestFooter>}
     </>
   );
 }

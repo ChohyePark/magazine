@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Button from "../../components/shared/Button";
 import Comment from "./Comment";
 import Container from "../../components/shared/Container";
+import { useSelector } from "react-redux";
 
 // 스타일 영역
 
@@ -91,7 +92,10 @@ const Tab = styled.div`
   justifi-content: end;
 `;
 
-export default function ({ user }) {
+export default function () {
+  const user = useSelector((state) => {
+    return state.user;
+  });
   const [replys, setReplys] = useState([]);
   const Navigate = useNavigate();
   const { id } = useParams();
