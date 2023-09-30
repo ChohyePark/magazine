@@ -22,7 +22,7 @@ export default function ({ post, setPost }) {
           setPost((prev) => ({ ...prev, category: e.target.value }));
         }}
       >
-        <option selected disabled>
+        <option value={""} disabled>
           카테고리
         </option>
         <option key={"라이프"} id="FREEDOM" value={"FREEDOM"}>
