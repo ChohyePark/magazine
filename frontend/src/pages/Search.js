@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import useInput from "../hooks/useInput";
 import styled from "styled-components";
 
 const SearchWrapper = styled.div`
@@ -99,16 +100,34 @@ const SearchMdIcon = styled.i`
 
 export default function () {
   const Navigate = useNavigate();
+  const [searchWord, handleChange] = useInput({ word: "" });
+
+  const onClickSearchPostsHandler = () => {
+    Navigate("/posts", { state: searchWord });
+  };
+
   const onClickBackHandler = () => {
     Navigate(-1);
+  };
+
+  const keyUpHandle = (e) => {
+    if (e.key === "Enter") {
+      onClickSearchPostsHandler();
+    }
   };
 
   return (
     <>
       <SearchWrapper $textAlign={"start"} $bg={"#F4F4F4;"} className="d-md-none">
         <SearchSmallTop>
-          <SearchSmallInput placeholder="Search"></SearchSmallInput>
-          <SearchSmallIcon className="ri-search-line"></SearchSmallIcon>
+          <SearchSmallInput
+            placeholder="Search"
+            onChange={handleChange}
+            name={"word"}
+            value={searchWord.word}
+            onKeyUp={keyUpHandle}
+          ></SearchSmallInput>
+          <SearchSmallIcon className="ri-search-line" onClick={onClickSearchPostsHandler}></SearchSmallIcon>
           <SearchSmallIcon className="ri-close-fill" onClick={onClickBackHandler}></SearchSmallIcon>
         </SearchSmallTop>
         <SearchSmallText>
@@ -127,9 +146,14 @@ export default function () {
         <SearchMdTop>
           <SearchMdInputBox>
             <span>
-              <SearchMdInput placeholder="Whats your interests?"></SearchMdInput>{" "}
+              <SearchMdInput
+                onChange={handleChange}
+                name={"word"}
+                placeholder="Whats your interests?"
+                onKeyUp={keyUpHandle}
+              ></SearchMdInput>{" "}
             </span>
-            <SearchMdIcon className="ri-search-line"></SearchMdIcon>
+            <SearchMdIcon className="ri-search-line" onClick={onClickSearchPostsHandler}></SearchMdIcon>
             <SearchMdIcon className="ri-close-fill" onClick={onClickBackHandler}></SearchMdIcon>
           </SearchMdInputBox>
         </SearchMdTop>

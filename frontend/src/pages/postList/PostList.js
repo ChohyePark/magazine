@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import PostButton from "../../components/post/PostCreateButton";
 import axios from "axios";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // 스타일 영역
 
 const ContentWrapper = styled.div`
+  height: 100%;
   background-color: #fbfbfb;
   padding-top: 15px;
   padding-bottom: 90px;
@@ -96,6 +97,7 @@ export default function () {
   const user = useSelector((state) => {
     return state.user;
   });
+  const { state } = useLocation();
   const [posts, setPosts] = useState([]);
   const [pagingPost, setPagingPost] = useState([]);
   const [page, setPage] = useState(0);
@@ -104,6 +106,14 @@ export default function () {
   const pageEnd = useRef();
 
   const pagingPosts = () => {
+    if (state) {
+      const item = posts
+        .filter(() => search.category == "ALL")
+        .filter((post) => post.title.includes(state.word) || post.contents.includes(state.word));
+      setPagingPost(item);
+      return;
+    }
+
     if (search.category == "ALL" && search.word == "") {
       setPagingPost(posts.slice(0, page));
       return;
