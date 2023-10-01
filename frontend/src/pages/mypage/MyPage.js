@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Outlet } from "react-router-dom";
 
 const Container = styled.div`
+  padding-top: 30px;
   display: flex;
   flex-direction: row;
 `;
@@ -17,6 +18,7 @@ const OutletBox = styled.div`
 `;
 
 export default function () {
+
   return (
     <Container>
       <SideBox>

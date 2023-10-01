@@ -100,7 +100,6 @@ export default function () {
   const Navigate = useNavigate();
   const { id } = useParams();
   const [post, setPost] = useState({});
-  const [replyLike, setReplyLike] = useState([]);
   const [liked, setLiked] = useState({ isLike: false, count: 0 });
   const [bookMarked, setBookMarked] = useState({ isSubscribed: false });
 
@@ -233,7 +232,7 @@ export default function () {
         <Content className="mt-4">
           <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(String(post.contents)) }}></div>
         </Content>
-        {user && post.email == user.email ? (
+        {user.isLogin && post.email == user.email ? (
           <>
             <ButtonWrapper>
               <Button clickEvent={onClickModPostHandler} width={"50px"} hegiht={"30px"}>

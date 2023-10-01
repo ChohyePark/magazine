@@ -11,7 +11,7 @@ let user = createSlice({
     isLogin: false,
   },
   reducers: {
-    saveUser(state, action) {
+    saveUser(state, action) { // 값을 바꾸는 함수
       state.createdDate = action.payload.createdDate;
       state.email = action.payload.email;
       state.nickname = action.payload.nickname;
