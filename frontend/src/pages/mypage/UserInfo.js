@@ -52,8 +52,8 @@ export default function () {
   const user = useSelector((state) => {
     return state.user;
   });
-  const [picture, setPicture] = useState("");
-  const [createdDate, setCreatedDate] = useState();
+  const [picture, setPicture] = useState(user.picture);
+  const [createdDate, setCreatedDate] = useState(user.createdDate);
 
   const getPicture = () => {
     if (user.picture !== "") {
@@ -81,7 +81,7 @@ export default function () {
   useEffect(() => {
     getPicture();
     calculateDate();
-  }, []);
+  }, [user]);
 
   return (
     <Form>
