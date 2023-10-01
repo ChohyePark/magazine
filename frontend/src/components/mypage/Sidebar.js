@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const SideBar = styled.div`
   height: 600px;
-  margin: 30px 0 0 50px;
+  margin-left: 50px;
   ul {
     margin: 0px;
     padding: 0px;

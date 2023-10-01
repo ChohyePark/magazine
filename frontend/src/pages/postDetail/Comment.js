@@ -73,8 +73,6 @@ const CommentListLayout = styled.div`
   align-items: center;
 `;
 
-// 수정중~~~~~~~~~~~~~~
-
 const CommentList = styled.div`
   margin-top: 10px;
   width: 800px;
@@ -85,7 +83,7 @@ const CommentList = styled.div`
   background-color: #f9f8f3;
 `;
 
-const Test = styled.div`
+const CommentTop = styled.div`
   width: 100%;
   padding-left: 10px;
   display: flex;
@@ -93,7 +91,7 @@ const Test = styled.div`
 `;
 
 const ProfileBox = styled.div`
-  padding: 5px 5px 10px 5px;
+  padding: 10px 5px 5px 5px;
 `;
 
 const Profile = styled.div`
@@ -186,7 +184,7 @@ const Comment = ({ user, reply, setReplys, replys }) => {
   return (
     <>
       <CommentList>
-        <Test>
+        <CommentTop>
           <ProfileBox>
             <Profile>
               <img src={reply.picture ? reply.picture : profile}></img>
@@ -205,7 +203,7 @@ const Comment = ({ user, reply, setReplys, replys }) => {
               </CommentLike>
             </CommentBoxItem>
             <CommentBoxItem $flex={"0.4"}>
-              {user && user.email == reply.email ? (
+              {user.isLogin && user.email == reply.email ? (
                 <CommentUpdateButton>
                   <ul>
                     <li
@@ -221,7 +219,7 @@ const Comment = ({ user, reply, setReplys, replys }) => {
               ) : null}
             </CommentBoxItem>
           </CommentBox>
-        </Test>
+        </CommentTop>
         {commentUpdateView ? (
           <CommentUpdateForm>
             <CommentUpdateTitle>

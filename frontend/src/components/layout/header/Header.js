@@ -5,7 +5,7 @@ import Navi from "./Navi";
 import logo from "../../../assets/logo/logo.png";
 
 const Header = styled.div`
-  height: 100px;
+  height: 118px;
   display: flex;
   position: sticky;
   z-index: 50;

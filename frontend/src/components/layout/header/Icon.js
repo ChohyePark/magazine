@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const IconWrapper = styled.div`
-  padding-bottom: 20px;
+  margin-top: 30px;
   height: 42px;
 `;
 
 const IconBox = styled.div`
   height: 100%;
   justify-content: center;
+  align-items: flex-end;
   display: flex;
   gap: 20px;
 `;

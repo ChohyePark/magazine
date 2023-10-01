@@ -32,6 +32,7 @@ const BannerWrapper = styled.div`
   }
 `;
 const BannerLayOut = styled.div`
+  align-items: flex-end;
   display: flex;
   width: 80%;
   height: 100%;
@@ -127,7 +128,6 @@ export default function () {
       method: "get",
     }).then((resp) => {
       dispatch(saveUser(resp.data));
-      console.log(resp.data);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify(resp.data));
     });
@@ -221,6 +221,7 @@ export default function () {
               </BannerItem>
               <BannerItem
                 $width={"150px"}
+                $top={"10px"}
                 $height={"150px"}
                 $imgwidth={"100%"}
                 $imgheight={"100%"}

@@ -139,17 +139,19 @@ const Post = () => {
       </UserWriteTitle>
       {post.slice(offset, offset + limit).map((post, i) => {
         return (
-          <Link to={`/post/${post.id}`} state={{ from: post }}>
-            <Posts>
-              <span
-                style={{
-                  color: "black",
-                }}
-              >
-                {post.title}
-              </span>
-            </Posts>
-          </Link>
+          <div key={post.id}>
+            <Link to={`/post/${post.id}`} state={{ from: post }}>
+              <Posts>
+                <span
+                  style={{
+                    color: "black",
+                  }}
+                >
+                  {post.title}
+                </span>
+              </Posts>
+            </Link>
+          </div>
         );
       })}
       <PagingBox>
@@ -191,18 +193,20 @@ const Reply = () => {
       </UserWriteTitle>
       {reply.slice(offset, offset + limit).map((reply, i) => {
         return (
-          <Link
-            to={`/post/${reply.postId}`}
-            state={{
-              from: {
-                id: reply.postId,
-              },
-            }}
-          >
-            <Comment>
-              <CommentContent>{reply.contents}</CommentContent>
-            </Comment>
-          </Link>
+          <div key={i}>
+            <Link
+              to={`/post/${reply.postId}`}
+              state={{
+                from: {
+                  id: reply.postId,
+                },
+              }}
+            >
+              <Comment>
+                <CommentContent>{reply.contents}</CommentContent>
+              </Comment>
+            </Link>
+          </div>
         );
       })}
       <PagingBox>
