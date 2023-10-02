@@ -163,12 +163,15 @@ export default function () {
     getReplys();
   }, []);
 
-  const onClickDeletePostHandler = () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      axios.delete(`/api/v1/posts/${post.id}`);
-      Navigate("/posts");
+  const onClickDeletePostHandler = async () => {
+    try {
+      if (window.confirm("정말 삭제하시겠습니까?")) {
+        await axios.delete(`/api/v1/posts/${post.id}`);
+        Navigate("/posts");
+      }
+    } catch (error) {
+      console.log(error);
     }
-    return;
   };
 
   const onClickModPostHandler = () => {
