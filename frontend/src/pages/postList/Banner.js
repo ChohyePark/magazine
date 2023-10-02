@@ -147,7 +147,7 @@ export default function ({ setSearch }) {
     setKeyword((prev) => ({ ...prev, word: "" }));
   };
 
-  const keyUpHandle = (e) => {
+  const keyDownHandle = (e) => {
     if (e.key === "Enter") {
       onClickSearchHandle();
     }
@@ -256,7 +256,7 @@ export default function ({ setSearch }) {
               onChange={(e) => {
                 setKeyword((prev) => ({ ...prev, word: e.target.value }));
               }}
-              onKeyUp={keyUpHandle}
+              onKeyDown={keyDownHandle}
             ></input>
           </InputWrapper>
           <IconWrapper>
