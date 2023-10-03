@@ -34,7 +34,8 @@
 * Back-end </br>
 
      <img src="https://img.shields.io/badge/SpringBoot-green?style=flat&logo=springboot&logoColor=white"> <img src="https://img.shields.io/badge/Java-darkgreen?style=flat&logo=java&logoColor=white">
-  <img src="https://img.shields.io/badge/Jpa-skyblue?style=flat&logo=jpa&logoColor=white"> <img src="https://img.shields.io/badge/MySQL-navy?style=flat&logo=jpa&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Jpa-skyblue?style=flat&logo=jpa&logoColor=white"> <img src="https://img.shields.io/badge/MySQL-navy?style=flat&logo=mysql&logoColor=white">
+   <img src="https://img.shields.io/badge/Gradle-green?style=flat&logo=gradle&logoColor=white">
 #
 
 ### 구현 기술 및 화면구성
