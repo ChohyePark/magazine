@@ -42,20 +42,20 @@
 
 |소셜 로그인|글 작성 및 수정 삭제|
 |------|---|
-|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/3669456d-c910-4c23-8fde-bc8aec13e5ee" width = "300" height = "160">|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/4a875165-d8e9-4063-8a00-b66869a6cf68" width = "300" height = "160">|
+|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/3669456d-c910-4c23-8fde-bc8aec13e5ee" width = "400" height = "230">|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/4a875165-d8e9-4063-8a00-b66869a6cf68" width = "400" height = "230">|
 
 |댓글|북마크 & 좋아요|
 |------|---|
-|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/2173176d-71d4-4c3a-8761-596455bf2aa4" width = "300" height = "160">|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/f04461e2-742b-4618-90d2-137ac8c2df97" width = "300" height = "160">|
+|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/2173176d-71d4-4c3a-8761-596455bf2aa4" width = "400" height = "230">|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/f04461e2-742b-4618-90d2-137ac8c2df97" width = "400" height = "230">|
 
 |마이페이지|카테고리 검색|
 |------|---|
-|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/0e565ac6-1b28-47c1-b6b9-0c94e00e202a" width = "300" height = "160">|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/0c167e78-1a87-4ef9-aac7-9c06482bc050" width = "300" height = "160">|
+|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/0e565ac6-1b28-47c1-b6b9-0c94e00e202a" width = "400" height = "230">|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/0c167e78-1a87-4ef9-aac7-9c06482bc050" width = "400" height = "230">|
 
 
 |무한 스크롤링|
 |------|
-|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/0423b363-8a26-492c-8ded-031b22ff6bc1" width = "300" height = "160">|
+|<img src = "https://github.com/ChohyePark/magazine/assets/122193843/0423b363-8a26-492c-8ded-031b22ff6bc1" width = "400" height = "230">|
 
 #
 
